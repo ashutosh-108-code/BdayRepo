@@ -1,5 +1,21 @@
 let highestZ = 1;
 
+const audioElement = document.getElementById('birthday-audio');
+if (audioElement) {
+  audioElement.volume = 0.5;
+  audioElement.play().then(() => {
+    console.log('Birthday audio playing');
+  }).catch(error => {
+    console.log('Autoplay blocked, waiting for user interaction');
+    document.addEventListener('click', () => {
+      audioElement.play();
+    });
+    document.addEventListener('touchstart', () => {
+      audioElement.play();
+    });
+  });
+}
+
 class Paper {
   holdingPaper = false;
   mouseTouchX = 0;
